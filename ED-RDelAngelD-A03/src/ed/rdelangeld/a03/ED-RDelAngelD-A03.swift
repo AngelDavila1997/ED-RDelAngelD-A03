@@ -43,7 +43,27 @@ class BusquedaClase {//Clase busqueda
     }
 }
 
-class Binaria: BusquedaClase{
+protocol Sorting{//Es una interface
+        func sort()
+    }
+
+class Binaria: BusquedaClase, Sorting{{
+	func sort() {
+		//Declaracion de variables
+            var menor = 0
+            var a = 0
+            for index in 0...vector.count-1{//Ciclo for
+                menor=index//menor iguala a la posicion
+                for index2 in stride(from: index+1, to: vector.count-1, by: 1){
+                    if(vector[index2]<vector[index]){
+                        menor=index2
+                    }
+                }
+                    a = vector[index]//se crea una variable auxiliar y se le guarda el valor
+                    vector[index] = vector[menor]//al valor del vector se le da el valor menor
+                    vector[menor] = a//el valor del vector se guarda en a
+            }
+        }
     override func fetch(n: Int) -> Int {//Se escribe sobre la func abstracta
         //Se inicializan las variables a usar
 		var centro: Int = 0
