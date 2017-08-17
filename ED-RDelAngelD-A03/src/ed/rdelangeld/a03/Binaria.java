@@ -9,7 +9,7 @@ package ed.rdelangeld.a03;
  *
  * @author A01411440
  */
-public class Binaria extends BusquedaClase{
+public class Binaria extends BusquedaClase implements Ordenamientos{
 
     @Override
     int fetch(int n) {//Se escribe dentro del metodo
@@ -33,4 +33,24 @@ public class Binaria extends BusquedaClase{
         System.out.println("Realizando busqueda binaria...");
         return -1; //Regresa una posicion inexistente
         }
+
+    @Override
+    public void seleccion() {
+        for (int i = 0; i < vector.length-1; i++)//Mientras i sea menor al largo del vector -1
+       {
+               int menor = i;//La posicion menor se guardara
+               for (int j = i + 1; j < vector.length; j++)//Mientras que j sea menor que el largo del vector
+               {
+                       if (vector[j] < vector[menor])//Si el valor en la posicion j es menor
+                       {
+                               menor = j;//menor iguala a la posicion j
+                       }
+               }
+               if (i != menor) //si i es diferente de menor
+               {
+                       int a = vector[i]; //se crea una variable auxiliar y se le guarda el valor del vector en i
+                       vector[i] = vector[menor]; //al valor del vector se le da el valor menor
+                       vector[menor] = a; //el valor del vector se guarda en a
+               }
+       }}
     }
