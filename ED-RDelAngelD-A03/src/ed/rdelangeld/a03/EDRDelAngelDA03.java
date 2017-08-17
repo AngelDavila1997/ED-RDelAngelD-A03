@@ -21,10 +21,12 @@ public class EDRDelAngelDA03 {
         re.showF(re.fetch(114));
         
         Binaria b = new Binaria ();
-        int[] a = {16, 17, 18, 19, 21};
+        int[] a = {18, 17, 16, 19, 21, 15, 4};
         b.setVector(a);
         b.showVector();
-        b.showF(b.fetch(20));
+        b.seleccion();
+        b.showVector();
+        b.showF(b.fetch(21));
     }
     
 }
