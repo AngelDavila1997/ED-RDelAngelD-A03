@@ -53,4 +53,17 @@ public class Binaria extends BusquedaClase implements Ordenamientos{
                        vector[menor] = a; //el valor del vector se guarda en a
                }
        }}
+    
+    @Override
+    public void insercion() {
+         for(int i = 1; i < vector.length; i++){
+             int temp = vector[i];
+             int j = i - 1;
+                while((j >= 0) && (vector[j] > temp)){
+                    vector[j+1] = vector[j];
+                    j--;
+                }
+             vector[j+1] = temp;
+         }
+    }
     }
