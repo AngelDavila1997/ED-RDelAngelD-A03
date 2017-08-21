@@ -20,6 +20,8 @@ public class EDRDelAngelDA03 {
         re.showVector();
         re.showF(re.fetch(114));
         
+        System.out.println("-------------------------");
+        
         Binaria b = new Binaria ();
         int[] a = {18, 17, 16, 19, 21, 15, 4};
         b.setVector(a);
@@ -27,6 +29,16 @@ public class EDRDelAngelDA03 {
         b.seleccion();
         b.showVector();
         b.showF(b.fetch(21));
+        
+        System.out.println("-------------------------");
+        
+        Binaria c = new Binaria();
+        int[] d = {18, 28, 16, 79, 21, 35, 4};
+        c.setVector(d);
+        c.showVector();
+        c.insercion();
+        c.showVector();
+        c.showF(c.fetch(35));
     }
     
 }
