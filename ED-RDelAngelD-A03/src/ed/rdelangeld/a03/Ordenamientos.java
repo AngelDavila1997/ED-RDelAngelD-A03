@@ -12,4 +12,6 @@ package ed.rdelangeld.a03;
 public interface Ordenamientos {
     void seleccion();
     void insercion();
+    void burbuja();
+    void quicksort(int inicio, int ultimo);
 }
