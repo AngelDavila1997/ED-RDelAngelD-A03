@@ -75,10 +75,11 @@ class Binaria: BusquedaClase, Ordenamiento{{
 	func insercion(){
 		var temp: Int
 		var j: Int
-		for index in stride(from:o, to: vector.count-1, by:1){
-			temp = vector[index]
-			j = index - 1
-				while((j >= 0) && (vector[j] > temp)){
+		for index in stride(from:o, to: vector.count-1, by:1){//Mientras i sea menor al largo del vector
+			temp = vector[index]//El valor del vector en la posicion i se guarda en temp
+			j = index - 1// En la variable j e guarda el valor de i -1
+				while((j >= 0) && (vector[j] > temp)){//Mientras que j sea mayor o igual a0
+					                              //Y el valor del vector en la pos j sea mayor que temp
 					vector[j+1] = vector[j]
 					j-=1
 				}
