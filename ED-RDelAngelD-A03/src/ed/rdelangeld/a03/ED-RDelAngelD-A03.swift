@@ -73,7 +73,17 @@ class Binaria: BusquedaClase, Ordenamiento{{
             }
         }
 	func insercion(){
-		
+		var temp: Int
+		var j: Int
+		for index in stride(from:o, to: vector.count-1, by:1){
+			temp = vector[index]
+			j = index - 1
+				while((j >= 0) && (vector[j] > temp)){
+					vector[j+1] = vector[j]
+					j-=1
+				}
+			vector[j+1] = temp
+		}
 	}
 	func burbuja(){
 		for _ in stride(from: 1, to: vector.count-1, by:1){
