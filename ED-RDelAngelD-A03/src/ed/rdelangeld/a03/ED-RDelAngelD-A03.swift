@@ -48,6 +48,7 @@ protocol Ordenamiento{//Es una interface
 	func insercion()
 	func burbuja()
 	func quicksort(inicio: Int, final: Int)
+	func mergesort(inicio: Int, final: Int)
     }
 
 class Binaria: BusquedaClase, Ordenamiento{{
@@ -119,6 +120,20 @@ class Binaria: BusquedaClase, Ordenamiento{{
 		if(i<ultimo){//Si el i es menor que el final del arreglo
 			quicksort(inicio: i, ultimo: ultimo)//Se enviara un arreglo con estas dos posiciones como parametros
 		}
+	}
+	func merge(){
+	}
+	func mergesort(inicio: Int, ultimo: Int){
+		ver medio: Int
+		if(inicio < ultimo){//Checa si el inicio es mas pequeño que el ultimo (son numero de posiciones)
+            		medio = (inicio + ultimo) / 2//Se obtiene la posicion media
+            		//Comienza a dividir el lado izquierdo del arreglo
+            		mergesort(inicio, medio)
+            		//Comienza a dividir el lado derecho del arreglo
+            		mergesort(medio + 1, ultimo)
+            		//Se combinan los arreglos
+            		merge(inicio, medio, ultimo)
+        	}
 	}
     override func fetch(n: Int) -> Int {//Se escribe sobre la func abstracta
         //Se inicializan las variables a usar
