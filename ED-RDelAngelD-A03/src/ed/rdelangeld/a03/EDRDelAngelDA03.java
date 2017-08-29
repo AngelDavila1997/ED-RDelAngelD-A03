@@ -56,9 +56,19 @@ public class EDRDelAngelDA03 {
         int[] g = {178, 35, 6, 17, 21, 19, 22};
         h.setVector(g);
         h.showVector();
-        h.quicksort(0, a.length-1);
+        h.quicksort(0, g.length-1);
         h.showVector();
         h.showF(h.fetch(21));
+        
+        System.out.println("-------------------------");
+        
+        Binaria i = new Binaria();
+        int[] j = {17, 5, 96, 21, 20, 11, 24};
+        i.setVector(j);
+        i.showVector();
+        i.mergesort(0, j.length-1);
+        i.showVector();
+        i.showF(i.fetch(21));
     }
     
 }
