@@ -45,9 +45,17 @@ class BusquedaClase {//Clase busqueda
 
 protocol Ordenamiento{//Es una interface
         func seleccion()
+	func insercion()
+	func burbuja()
+	func quicksort(inicio: Int, final: Int)
     }
 
 class Binaria: BusquedaClase, Ordenamiento{{
+	func intercambio(i: Int, j: Int){
+		let temp = vector[i]
+		vector[i] = vector[j]
+		vector[j] = temp
+	}
 	func seleccion() {
 		//Declaracion de variables
             var menor = 0
@@ -64,6 +72,43 @@ class Binaria: BusquedaClase, Ordenamiento{{
                     vector[menor] = a//el valor del vector se guarda en a
             }
         }
+	func insercion(){
+		
+	}
+	func burbuja(){
+		for _ in stride(from: 1, to: vector.count-1, by:1){
+			for index in stride(from: 0, to: vector.count-2, by:1){
+				if(vector[index] > vector[index+1]){
+					intercambio(i: index, j: index+1)
+				}
+			}
+		}
+	}
+	func quicksort(inicio: Int, ultimo: Int){
+		var i = inicio
+		var j = ultimo
+		let pivote = vector[((inicio+final)/2)]//Se obtiene el pivote sumando las posiciones inicio y final-inicio
+                                                       //del vector entre 2 y el valor de esa posicion se le da a pivote
+		repeat{//Equivalente de do
+			while(vector[i]<pivote){//Si el valor del vector en la posicion i es menor al pivote
+				i+=1//El apuntador avanzara
+			}
+			while(vector[j]>pivote){//Si el valor del vector en la posicion j es mayor al pivote
+				j-=1//El apuntador ira para atras
+			}
+			if(i<=j){//Si i<=j se realizara el intercambio de valores y se moveran los apuntadores
+				intercambio(i: i, j: j)
+				i+=1
+				j-=1
+			}
+		}while(i<=j)
+		if(inicio<j){//Si el inicio del arreglo es menor que j
+			quicksort(inicio: inicio, ultimo:j)//Se enviara un arreglo con estas dos posiciones como parametros
+		}
+		if(i<ultimo){//Si el i es menor que el final del arreglo
+			quicksort(inicio: i, ultimo: ultimo)//Se enviara un arreglo con estas dos posiciones como parametros
+		}
+	}
     override func fetch(n: Int) -> Int {//Se escribe sobre la func abstracta
         //Se inicializan las variables a usar
 		var centro: Int = 0
