@@ -76,7 +76,7 @@ class Binaria: BusquedaClase, Ordenamiento{{
 	func insercion(){
 		var temp: Int
 		var j: Int
-		for index in stride(from:o, to: vector.count-1, by:1){//Mientras i sea menor al largo del vector
+		for index in stride(from:0, to: vector.count-1, by:1){//Mientras i sea menor al largo del vector
 			temp = vector[index]//El valor del vector en la posicion i se guarda en temp
 			j = index - 1// En la variable j e guarda el valor de i -1
 				while((j >= 0) && (vector[j] > temp)){//Mientras que j sea mayor o igual a0
@@ -121,7 +121,33 @@ class Binaria: BusquedaClase, Ordenamiento{{
 			quicksort(inicio: i, ultimo: ultimo)//Se enviara un arreglo con estas dos posiciones como parametros
 		}
 	}
-	func merge(){
+	func merge(inicio: Int, medio: Int, ultimo: Int){
+		var auxiliar:[Int] = [Int](vector.count)//Se crea un arreglo auxiliar
+        	for index in stride(from: 0, to: ultimo, by:1){
+            		auxiliar[i] = vector[i]//Se copian ambas partes en el arreglo auxiliar
+        	}
+        var i = inicio
+        var j = medio + 1
+        var k = inicio
+        // Se copian los valores mas pequeños de, ya sea el lado izq o der hacia el arreglo original
+        	while (i <= medio && j <= ultimo) {//Mientras que i sea menor o igual al medio y j sea menor o igual a ultimo
+            		if (auxiliar[i] <= auxiliar[j]) {//Si el valor de la posicion i en el arreglo auxiliar
+                                            		 //es menor o igual al valor de la posicion j en el mismo arreglo
+                		vector[k] = auxiliar[i]//En el vector original se guardara el valor de la pos i del arreglo auxiliar
+                		i+=1//i aumenta en 1, osea se mueve el indicador de posicion
+            		} else {//Sino
+                		vector[k] = auxiliar[j]//En el vector original se guardara el valor de la pos j en el arreglo auxiliar
+                		j+=1//j aumenta en 1, y se aumenta el indicador de posicion
+            		}
+            	k+=1//Aumenta la posicion del arreglo original
+        	}
+        	//Se copia el resto del arreglo izq en el arreglo original
+       		 while (i <= medio) {
+           		 vector[k] = auxiliar[i]
+           		 k+=1
+            		 i+=1
+        	}
+        // Como ya estamos ordenando, cualquier residuo del lado derecho, ya estan en la posicion correcta
 	}
 	func mergesort(inicio: Int, ultimo: Int){
 		ver medio: Int
