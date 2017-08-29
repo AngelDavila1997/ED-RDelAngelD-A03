@@ -43,12 +43,12 @@ class BusquedaClase {//Clase busqueda
     }
 }
 
-protocol Sorting{//Es una interface
-        func sort()
+protocol Ordenamiento{//Es una interface
+        func seleccion()
     }
 
-class Binaria: BusquedaClase, Sorting{{
-	func sort() {
+class Binaria: BusquedaClase, Ordenamiento{{
+	func seleccion() {
 		//Declaracion de variables
             var menor = 0
             var a = 0
