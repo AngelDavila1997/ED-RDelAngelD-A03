@@ -48,9 +48,7 @@ public class Binaria extends BusquedaClase implements Ordenamientos{
                }
                if (i != menor) //si i es diferente de menor
                {
-                       int a = vector[i]; //se crea una variable auxiliar y se le guarda el valor del vector en i
-                       vector[i] = vector[menor]; //al valor del vector se le da el valor menor
-                       vector[menor] = a; //el valor del vector se guarda en a
+                       intercambio(i, menor);
                }
        }}
 
@@ -84,7 +82,7 @@ public class Binaria extends BusquedaClase implements Ordenamientos{
         int i, j, pivote;
         i = inicio;
         j = ultimo;
-        pivote = vector[inicio + (ultimo-inicio)/2];//Se obtiene el pivote sumando los valores de inicio y final-inicio
+        pivote = vector[(inicio + ultimo)/2];//Se obtiene el pivote sumando las posiciones inicio y final-inicio
                                                     //del vector entre 2 y el valor de esa posicion se le da a pivote
         do{//Mientras que la condicion de i<=j se cumpla
            while(vector[i] < pivote){//Si el valor del vector en la posicion i es menor al pivote
@@ -107,10 +105,53 @@ public class Binaria extends BusquedaClase implements Ordenamientos{
             quicksort(i, ultimo);//Se enviara un arreglo con estas dos posiciones como parametros
         }
     }
+
+    @Override
+    public void mergesort(int inicio, int ultimo) {
+        if(inicio < ultimo){//Checa si el inicio es mas pequeño que el ultimo (son numero de posiciones)
+            int medio = (inicio + ultimo) / 2;//Se obtiene la posicion media
+            //Comienza a dividir el lado izquierdo del arreglo
+            mergesort(inicio, medio); 
+            //Comienza a dividir el lado derecho del arreglo
+            mergesort(medio + 1, ultimo);
+            //Se combinan los arreglos
+            merge(inicio, medio, ultimo);
+        }
+    }
+    
+    public void merge(int inicio, int medio, int ultimo){
+        int[] auxiliar = new int[vector.length];//Se crea un arreglo auxiliar
+        for(int i = inicio; i <= ultimo; i++){
+            auxiliar[i] = vector[i];//Se copian ambas partes en el arreglo auxiliar
+        }
+        int i = inicio;
+        int j = medio + 1;
+        int k = inicio;
+        // Se copian los valores mas pequeños de, ya sea el lado izq o der hacia el arreglo original
+        while (i <= medio && j <= ultimo) {//Mientras que i sea menor o igual al medio y j sea menor o igual a ultimo
+            if (auxiliar[i] <= auxiliar[j]) {//Si el valor de la posicion i en el arreglo auxiliar
+                                             //es menor o igual al valor de la posicion j en el mismo arreglo
+                vector[k] = auxiliar[i];//En el vector original se guardara el valor de la pos i del arreglo auxiliar
+                i++;//i aumenta en 1, osea se mueve el indicador de posicion
+            } else {//Sino
+                vector[k] = auxiliar[j];//En el vector original se guardara el valor de la pos j en el arreglo auxiliar
+                j++;//j aumenta en 1, y se aumenta el indicador de posicion
+            }
+            k++;//Aumenta la posicion del arreglo original
+        }
+        //Se copia el resto del arreglo izq en el arreglo original
+        while (i <= medio) {
+            vector[k] = auxiliar[i];
+            k++;
+            i++;
+        }
+        // Como ya estamos ordenando, cualquier residuo del lado derecho, ya estan en la posicion correcta
+    }
     
     public void intercambio(int i, int j){
         int temp = vector[i];
         vector[i] = vector[j];
         vector[j] = temp;    
     }
-    }
+
+}
