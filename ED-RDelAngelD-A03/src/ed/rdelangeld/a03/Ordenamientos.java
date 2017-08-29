@@ -14,4 +14,6 @@ public interface Ordenamientos {
     void insercion();
     void burbuja();
     void quicksort(int inicio, int ultimo);
+    void mergesort(int inicio, int ultimo);
+
 }
